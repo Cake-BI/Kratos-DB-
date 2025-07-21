@@ -1,2 +1,2 @@
-# Kratos-DB-
+# Kratos-DB
 SQL Scripts 
