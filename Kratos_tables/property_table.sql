@@ -15,7 +15,8 @@ RefinancePropertyExistingLienAmount INT,
 GseRefinancePurposeType NVARCHAR(40),
 RefinanceProposedImprovementsDescription NVARCHAR(100),
 PropertyRightsType VARCHAR(40),
-PropertyID NVARCHAR(100) PRIMARY KEY
+PropertyID NVARCHAR(100) PRIMARY KEY,
+CONSTRAINT FK_Property_Loan FOREIGN KEY (LoanID) REFERENCES dbo.Loan(LoanID)
 )
 
 INSERT INTO dbo.Property (
@@ -62,7 +63,7 @@ LEFT JOIN Kratos.dbo.Loan kl ON kl.LoanNum = l.LoanNumber
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Property p ON p.encompassid = l.encompassid
 
 
-/*DROP TABLE Property
+-- DROP TABLE property 
 
 SELECT 
     COLUMN_NAME, 
@@ -71,3 +72,6 @@ SELECT
 FROM Kratos.INFORMATION_SCHEMA.COLUMNS 
 WHERE TABLE_NAME = 'Borrower' 
   AND TABLE_SCHEMA = 'dbo';*/ 
+
+ALTER TABLE Borrower
+ADD CONSTRAINT FK__Borrower__LoanID;
