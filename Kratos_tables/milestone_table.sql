@@ -1,29 +1,24 @@
-SELECT ml.days,
-ml.logrecordindex,
-ml.stage,
-CASE WHEN ml.stage is 'Started' THEN 1 
-	 WHEN ml.stage is 'Initial Disclosures' THEN 2
-	 WHEN ml.stage is 'Processing' THEN 3
-	 WHEN ml.stage is 'Submittal' THEN 4
-	 WHEN ml.stage is 'Cond Approval' THEN 5
-	 WHEN ml.stage is 'Resubmittal' THEN 6
-	 WHEN ml.stage is 'Approval' THEN 7
-	 WHEN ml.stage is 'Completion' THEN 8
-	 WHEN ml.stage is 'Clear to Close' THEN 9
-	 WHEN ml.stage is 'Docs Ordered' THEN 10
-	 WHEN ml.stage is 'Docs Signing' THEN 11
-	 WHEN ml.stage is 'Funding' THEN 12
-	 WHEN ml.stage is 'Shipping' THEN 13
-	 WHEN ml.stage is 'Final Docs' THEN 14
-ml.tpoconnectstatus,
-l.milestonefilestarteddate,
-l.milestonesubmitteddate,
-l.milestoneapproveddate,
-l.milestonefundeddate,
---l.milestonelastcompleted,
-l.milestonecurrentname
+CREATE TABLE dbo.Milestone (
 
+)
+SELECT ml.stage,
+    ml.tpoconnectstatus,
+    l.milestonefilestarteddate,
+    l.milestonesubmitteddate,
+    l.milestoneapproveddate,
+    l.milestonefundeddate,
+    --milestonelastcompleted = v.VirtualFieldValue,
+    l.milestonecurrentname
 FROM [WIN-T0FCRL091AK].Encompass.elliedb.Milestonelog ml
-LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = ml.encompassid
-WHERE l.LoanNumber = 2503043904  
+LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = ml.encompassid 
+--LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.VirtualFields v ON v.encompassid = l.encompassid
+WHERE l.LoanNumber = 2503043904;
+
+
+SELECT Loannumber, ProposedRealEstateTaxesAmount from [WIN-T0FCRL091AK].Encompass.elliedb.Loan WHERE ProposedRealEstateTaxesAmount ='n/a' 
+
+
+SELECT * --DISTINCT logrecordindex
+FROM [WIN-T0FCRL091AK].Encompass.elliedb.loan
+WHERE EncompassID = 'bb51f955-82bd-4636-b448-a0879003950c'
 
