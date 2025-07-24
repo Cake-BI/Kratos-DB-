@@ -12,7 +12,8 @@ CREATE TABLE dbo.Borrower (
     HomePhoneNumber NVARCHAR(50),
     MobilePhone NVARCHAR(50),
     MaritalStatusType VARCHAR(50),
-    BorrowerId NVARCHAR(100) PRIMARY KEY
+    BorrowerId NVARCHAR(100) PRIMARY KEY,
+    ModifiedUtc BIGINT NULL
 );
 
 INSERT INTO dbo.Borrower (
@@ -29,7 +30,8 @@ INSERT INTO dbo.Borrower (
     homephonenumber,
     mobilephone,
     maritalstatustype,
-    borrowerid
+    borrowerid,
+    ModifiedUtc
 )
 Select kl.loanid,
 a.applicationindex,
@@ -44,19 +46,17 @@ r.addresscity,
 b.homephonenumber,
 b.mobilephone,
 b.maritalstatustype,
-b.borrowerid
+b.borrowerid,
+b.ModifiedUtc
 
 From [WIN-T0FCRL091AK].Encompass.elliedb.Loan l  
 LEFT JOIN Kratos.dbo.Loan kl ON kl.LoanNum = l.LoanNumber
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b ON l.encompassid = b.encompassid --and fullnamewithsuffix is not null 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Application a ON a.applicationid = b.applicationid 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Residence r ON r.applicationid = a.applicationid and b.applicanttype = r.applicanttype and urla2020streetaddress is not null and mailingaddressindicator = 1 
-Where fullnamewithsuffix is not null and l.loannumber = 2405039130
+Where fullnamewithsuffix is not null
 
 
-
-select * from borrower 
-where Loanid = 1021135
 
 -- DBCC CHECKIDENT ('dbo.borrower', RESEED, 9999); 
 
