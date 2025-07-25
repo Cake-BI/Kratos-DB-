@@ -95,17 +95,20 @@ e.foreignaddressindicator,
 e.country,
 e.employmentid 
 
---SELECT l.loannumber, kl.loannum, * 
-From [WIN-T0FCRL091AK].Encompass.elliedb.Loan l  
-LEFT JOIN Kratos.dbo.Loan kl ON kl.LoanNum = l.LoanNumber
+--SELECT kl.loannum, kb.borrowerid, *
+From Kratos.dbo.Loan kl 
+LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b ON l.encompassid = b.encompassid --and fullnamewithsuffix is not null 
 LEFT JOIN Kratos.dbo.Borrower kb ON kb.borrowerid = b.borrowerid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Residence r ON r.applicationid = b.applicationid and b.applicanttype = r.applicanttype and urla2020streetaddress is not null and mailingaddressindicator = 1 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Employment e ON e.applicationid = r.applicationid AND e.owner = r.applicanttype 
-Where b.fullnamewithsuffix is not null and e.employmentid is not null AND l.loannumber = 2405039130
+WHERE b.fullnamewithsuffix is not null and e.employmentid is not null
 
+/*SELECT l.loannumber, e.applicationid, e.* FROM [WIN-T0FCRL091AK].Encompass.elliedb.Employment e
+LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = e.encompassid
+WHERE l.loannumber = '2501042333'*/ 
 
--- DELETE FROM dbo.Employment
+--DELETE FROM dbo.Employment
 
 -- Drop Table dbo.Employer
 

@@ -1,5 +1,5 @@
 CREATE TABLE dbo.LoanMilestone (
-    LoanNumber VARCHAR(50),
+    LoanID VARCHAR(50),
 
     -- Milestone Dates + Durations
     StartedDate DATETIME,
@@ -102,7 +102,7 @@ LatestModified AS (
 
 -- Now do the insert
 INSERT INTO dbo.LoanMilestone (
-    LoanNumber,
+    LoanID,
 
     StartedDate,            DaysAtStarted,
     InitialDisclosuresDate, DaysAtInitialDisclosures,
@@ -146,7 +146,7 @@ JOIN DurationPivot dur ON d.loanID = dur.loanID
 JOIN LatestModified lm ON d.loanID = lm.loanID;
 
 
-
+-- DROP TABLE LoanMilestone
 
 
 --Select * from loanmilestone
