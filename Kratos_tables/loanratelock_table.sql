@@ -14,7 +14,7 @@ CREATE TABLE dbo.LoanRateLock(
     Impounds BIT,
     Interest DECIMAL(10, 4),
     RequestedInterestRatePercent DECIMAL(5, 3),
-    RateLockId NVARCHAR(100),
+    RateLockId NVARCHAR(100) PRIMARY KEY,
     ModifiedUtc BIGINT 
 
     CONSTRAINT FK_LoanRateLock_Loan FOREIGN KEY (LoanId)
