@@ -2,7 +2,8 @@ SELECT kl.LoanId,
 i.Owner,
 i.IncomeType,
 i.Amount,
-i.ApplicationId, 
+i.ApplicationId,
+b.BorrowerId,
 i.IncomeId, 
 i.ModifiedUtc 
 
@@ -30,6 +31,15 @@ LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Income I ON I.applicationid = b.ap
 --REFERENCES dbo.Loan(LoanID)
 --ON DELETE CASCADE;
 
+SELECT * FROM Income
+Where loanid = '1028736'
+
+
+
+SELECT * FROM Loan l 
+Left Join borrower b ON b.loanId = l.loanId 
+Left Join Income i ON i.borrowerid = b.borrowerid and i.owner = b.applicanttype 
+WHERE l.loannum = '2411041520'
 
 
 

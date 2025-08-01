@@ -18,6 +18,10 @@ CREATE TABLE dbo.Borrower (
 
 
 --ALTER TABLE dbo.Borrower
+--ADD ApplicantType VARCHAR(30);
+
+
+--ALTER TABLE dbo.Borrower
 --DROP CONSTRAINT [FK_Borrower(LoanID)_LoanID(LoanID)];
 
 
@@ -74,4 +78,24 @@ Where fullnamewithsuffix is not null
 -- DBCC CHECKIDENT ('dbo.borrower', RESEED, 9999); 
 
 -- DELETE FROM dbo.Borrower
+
+UPDATE b_new
+SET b_new.ApplicantType = b_orig.ApplicantType
+FROM dbo.Borrower b_new
+JOIN Kratos.dbo.Loan kl ON b_new.loanid = kl.loanid
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.LoanNum = l.LoanNumber
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b_orig ON l.encompassid = b_orig.encompassid
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Application a ON a.applicationid = b_orig.applicationid
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Residence r 
+    ON r.applicationid = a.applicationid 
+    AND b_orig.applicanttype = r.applicanttype 
+    AND urla2020streetaddress IS NOT NULL 
+    AND mailingaddressindicator = 1
+WHERE b_orig.fullnamewithsuffix IS NOT NULL
+  AND b_new.fullnamewithsuffix = b_orig.fullnamewithsuffix;
+
+SELECT * FROM Application a 
+LEFT JOIN Income i ON i.applicationid = a.applicationid
+Where i.LoanId = '1028736'
+
 
