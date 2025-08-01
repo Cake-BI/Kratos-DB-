@@ -10,6 +10,15 @@ CREATE TABLE dbo.LoanUnderwriting (
 
 -- Drop table LoanUnderwriting
 
+--ALTER TABLE dbo.LoanUnderwriting
+--DROP CONSTRAINT [FK_LoanUnderwriting(LoanID)_Loan(LoanID)];
+
+--ALTER TABLE dbo.LoanUnderwriting
+--ADD CONSTRAINT [FK_LoanUnderwriting(LoanId)_Loan(LoanID)]
+--FOREIGN KEY (LoanID)
+--REFERENCES dbo.Loan(LoanID)
+--ON DELETE CASCADE;
+
 INSERT INTO dbo.LoanUnderwriting (
     LoanId,
     AdverseActionDate,

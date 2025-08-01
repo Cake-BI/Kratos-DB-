@@ -50,6 +50,15 @@ CREATE TABLE dbo.LoanMilestone (
 );
 
 
+--ALTER TABLE dbo.Loanmilestone
+--DROP CONSTRAINT [FK_LoanMilestone(LoanID)_Loan(LoanID)];
+
+--ALTER TABLE dbo.Loanmilestone
+--ADD CONSTRAINT [FK_LoanMilestone(LoanID)_Loan(LoanID)]
+--FOREIGN KEY (LoanID)
+--REFERENCES dbo.Loan(LoanID)
+--ON DELETE CASCADE;
+
 
 -- Pivot 1: Completion Dates
 WITH DatePivot AS (
@@ -129,5 +138,7 @@ SELECT
 FROM DatePivot d
 JOIN DurationPivot dur ON d.loannumber = dur.loannumber
 JOIN LatestModified lm ON d.loannumber = lm.loannumber;
+
+
 
 

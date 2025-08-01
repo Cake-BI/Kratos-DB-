@@ -23,6 +23,15 @@ CREATE TABLE dbo.LoanRateLock(
 
 --DROP TABLE LoanRateLock
 
+--ALTER TABLE dbo.LoanRatelock
+--DROP CONSTRAINT [FK_LoanRateLock(LoanID)_Loan(LoanID)];
+
+--ALTER TABLE dbo.LoanRatelock
+--ADD CONSTRAINT [FK_LoanRatelock(LoanID)_Loan(LoanID)]
+--FOREIGN KEY (LoanID)
+--REFERENCES dbo.Loan(LoanID)
+--ON DELETE CASCADE;
+
 INSERT INTO dbo.LoanRateLock(
     LoanId,
     BuySidePriceRate,

@@ -39,6 +39,15 @@ CREATE TABLE dbo.LoanTerms (
 
 --DROP TABLE LoanTerms
 
+--ALTER TABLE dbo.LoanTerms
+--DROP CONSTRAINT [FK_LoanTerms(LoanID)_Loan(LoanID)];
+
+--ALTER TABLE dbo.LoanTerms
+--ADD CONSTRAINT [FK_LoanTerms(LoanID)_Loan(LoanID)]
+--FOREIGN KEY (LoanID)
+--REFERENCES dbo.Loan(LoanID)
+--ON DELETE CASCADE;
+
 
 INSERT INTO dbo.LoanTerms (
     LoanID,

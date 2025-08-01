@@ -20,6 +20,15 @@ CREATE TABLE dbo.LoanServicing (
 
 -- DROP TABLE LoanServicing
 
+--ALTER TABLE dbo.LoanServicing 
+--DROP CONSTRAINT [FK_LoanServicing(LoanID)_Loan(LoanID)];
+
+--ALTER TABLE dbo.LoanServicing
+--ADD CONSTRAINT [FK_LoanServicing(LoanID)_Loan(LoanID)]
+--FOREIGN KEY (LoanID)
+--REFERENCES dbo.Loan(LoanID)
+--ON DELETE CASCADE;
+
 INSERT INTO dbo.LoanServicing (
     LoanID,
     InvestorName,

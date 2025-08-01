@@ -16,6 +16,19 @@ CREATE TABLE dbo.Borrower (
     ModifiedUtc BIGINT NULL
 );
 
+
+--ALTER TABLE dbo.Borrower
+--DROP CONSTRAINT [FK_Borrower(LoanID)_LoanID(LoanID)];
+
+
+--ALTER TABLE dbo.Borrower
+--ADD CONSTRAINT [FK_Borrower(LoanID)_LoanID(LoanID)]
+--FOREIGN KEY (LoanId)
+--REFERENCES dbo.Loan(loanid)
+--ON DELETE CASCADE;
+
+
+
 INSERT INTO dbo.Borrower (
     loanid,
     applicationindex,

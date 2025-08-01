@@ -313,3 +313,4 @@ GO
 
 
 Select TOP 100 * FROM dbo.vwLoan
+

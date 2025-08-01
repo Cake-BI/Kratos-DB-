@@ -48,6 +48,15 @@ CREATE TABLE dbo.LoanMilestone (
     LastModifiedUtc BIGINT
 );
 
+--ALTER TABLE dbo.LoanMilestone
+--DROP CONSTRAINT [FK_LoanMilestone(LoanID)_Loan(LoanID)];
+
+--ALTER TABLE dbo.LoanMilestone
+--ADD CONSTRAINT [FK_LoanLoanMilestone(LoanId)_Loan(LoanID)]
+--FOREIGN KEY (LoanID)
+--REFERENCES dbo.Loan(LoanID)
+--ON DELETE CASCADE;
+
 
 -- CTEs First
 WITH DatePivot AS (

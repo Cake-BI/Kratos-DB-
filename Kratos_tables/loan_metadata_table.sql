@@ -12,6 +12,16 @@ CREATE TABLE dbo.LoanMetaData (
 
 --DROP TABLE LoanMetaData
 
+--ALTER TABLE dbo.LoanMetaData
+--DROP CONSTRAINT [FK_LoanMetaData(LoanID)_Loan(LoanID)];
+
+--ALTER TABLE dbo.LoanMetaData
+--ADD CONSTRAINT [FK_LoanMetaData(LoanID)_Loan(LoanID)]
+--FOREIGN KEY (LoanID)
+--REFERENCES dbo.Loan(LoanID)
+--ON DELETE CASCADE;
+
+
 INSERT INTO dbo.LoanMetaData (
     LoanID,
     CreatedUtc,

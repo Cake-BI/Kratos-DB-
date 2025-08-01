@@ -31,6 +31,18 @@ CREATE TABLE dbo.Employment (
     EmployerID NVARCHAR(100) PRIMARY KEY
 )
 
+
+
+--ALTER TABLE dbo.Employment
+--DROP CONSTRAINT [FK__Employment(BorrowerID)__Borrower(BorrowerID)];
+
+
+--ALTER TABLE dbo.Employment
+--ADD CONSTRAINT [FK_Employment(BorrowerID)_Borrower(BorrowerID)]
+--FOREIGN KEY (BorrowerID)
+--REFERENCES dbo.Borrower(borrowerid)
+--ON DELETE CASCADE;
+
 INSERT INTO dbo.Employment (
     borrowerid,
     EmployerName,
