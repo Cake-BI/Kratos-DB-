@@ -34,7 +34,7 @@ CREATE TABLE dbo.Employment (
 
 
 --ALTER TABLE dbo.Employment
---DROP CONSTRAINT [FK__Employment(BorrowerID)__Borrower(BorrowerID)];
+--DROP CONSTRAINT [FK_Employment(BorrowerID)_Borrower(BorrowerID)];
 
 
 --ALTER TABLE dbo.Employment

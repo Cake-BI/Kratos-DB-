@@ -30,6 +30,7 @@ CREATE TABLE dbo.LoanTerms (
     LoanPurposeOfRefinanceType VARCHAR(50),
     MaturityDate DATE,
     SubordinateLienAmount DECIMAL(20, 2),
+    IncomeVerifyType NVARCHAR(50),
     LoanProductDataID NVARCHAR(100) PRIMARY KEY,
     ModifiedUtc BIGINT
 
@@ -81,6 +82,7 @@ INSERT INTO dbo.LoanTerms (
     LoanPurposeOfRefinanceType,
     MaturityDate,
     SubordinateLienAmount,
+    IncomeVerifyType,
     LoanProductDataID,
     ModifiedUtc
 )
@@ -116,9 +118,13 @@ l.FirstTimeHomebuyersIndicator,
 l.LoanPurposeOfRefinanceType,
 l.MaturityDate,
 l.SubordinateLienAmount,
+cf.StringValue AS IncomeVerifyType,
 lpd.LoanProductDataID,
 lpd.ModifiedUtc
 
 FROM dbo.loan kl
 JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.LoanProductData lpd ON lpd.encompassid = l.encompassid
+LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.CustomField cf ON cf.encompassid = lpd.encompassid AND cf.fieldname = 'CX.INCOMEVERIFYTYPE'
+
+SELECT * FROM loanTerms 
