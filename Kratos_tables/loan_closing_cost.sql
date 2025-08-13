@@ -9,7 +9,7 @@ cc.ModifiedUtc
 
 INTO dbo.LoanClosingCost
 FROM dbo.Loan kl
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.Loannumber = kl.LoanNum
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.LoanGuID
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.ClosingCost cc ON cc.encompassId = l.encompassid
 
 --DROP TABLE LoanClosingCost
@@ -29,7 +29,7 @@ LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.ClosingCost cc ON cc.encompassId =
 --REFERENCES dbo.Loan(LoanID)
 --ON DELETE CASCADE;
 
--- EXAMPLE FOR UPDATING A COLUMN THAT WAS FORGOTTEN IN THE INITIAL CREATION--
+--EXAMPLE FOR UPDATING A COLUMN THAT WAS FORGOTTEN IN THE INITIAL CREATION--
 
 /* UPDATE lcc
 SET lcc.Section1000OtherCreditsAmount = cc.Section1000OtherCreditsAmount

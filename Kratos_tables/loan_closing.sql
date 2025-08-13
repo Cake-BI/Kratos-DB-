@@ -7,6 +7,8 @@ CREATE TABLE dbo.LoanClosing (
     REFERENCES dbo.Loan(LoanId)
 );
 
+--DELETE FROM LoanClosing
+
 --DROP TABLE LoanClosing
 
 --ALTER TABLE dbo.LoanClosing
@@ -29,4 +31,4 @@ l.LenderPaidClosingCostsAmount,
 l.ModifiedUtc
 
 FROM dbo.loan kl 
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum  
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.LoanGuID  

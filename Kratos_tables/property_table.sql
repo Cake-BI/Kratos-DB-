@@ -23,25 +23,24 @@ p.ModifiedUtc
 
 INTO dbo.LoanProperty
 FROM Kratos.dbo.Loan kl
-LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.LoanNum = l.LoanNumber
+LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loanguid = l.encompassid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Property p ON p.encompassid = l.encompassid
 
 
 ----------------------------------------- ADD AND ALTAR BELOW ----------------------------------------------------
 
-ALTER TABLE dbo.LoanProperty
+/*ALTER TABLE dbo.LoanProperty
 ADD StructureBuiltYear INT
     
-
-
 UPDATE lp
 SET 
     lp.StructureBuiltYear = p.StructureBuiltYear
 FROM dbo.LoanProperty lp
 JOIN Kratos.dbo.Loan kl ON kl.LoanID = lp.LoanID
 JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.LoanNumber = kl.LoanNum
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Property p ON p.encompassid = l.encompassid;
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Property p ON p.encompassid = l.encompassid;*/
 
+--DELETE FROM LoanProperty
 
 --DROP TABLE LoanProperty 
 

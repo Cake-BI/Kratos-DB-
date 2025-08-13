@@ -3,7 +3,7 @@ gf.*
 
 INTO GiftGrant
 FROM Loan kl 
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.loanguid 
 JOIN [WIN-T0FCRL091AK].Encompass.elliedb.giftgrant gf ON gf.encompassid = l.encompassid
 
 --ALTER TABLE GiftGrant 

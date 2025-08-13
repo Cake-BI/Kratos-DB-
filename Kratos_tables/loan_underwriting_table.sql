@@ -7,8 +7,9 @@ CREATE TABLE dbo.LoanUnderwriting (
     REFERENCES dbo.Loan(LoanId)
 );
 
+--DELETE FROM LoanUnderwriting
 
--- Drop table LoanUnderwriting
+--Drop table LoanUnderwriting
 
 --ALTER TABLE dbo.LoanUnderwriting
 --DROP CONSTRAINT [FK_LoanUnderwriting(LoanID)_Loan(LoanID)];
@@ -32,7 +33,7 @@ l.UCDOrigSubmissionDate,
 l.modifiedutc
 
 FROM dbo.loan kl
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.loanguid 
 
 
 

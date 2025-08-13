@@ -21,6 +21,8 @@ CREATE TABLE dbo.LoanRateLock(
     REFERENCES dbo.Loan(LoanId)
 );
 
+--DELETE FROM LoanRateLock
+
 --DROP TABLE LoanRateLock
 
 --ALTER TABLE dbo.LoanRatelock
@@ -71,10 +73,10 @@ rl.ratelockid,
 rl.modifiedutc
 
 FROM dbo.loan kl 
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.loanguid 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.RateLock rl ON rl.encompassid = l.encompassid
 
--- SELECT top 5 * from [WIN-T0FCRL091AK].Encompass.elliedb.RateLock
+SELECT top 5 * FROM LoanRateLock
 
 
 

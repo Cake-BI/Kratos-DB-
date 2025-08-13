@@ -1,4 +1,5 @@
 SELECT kl.LoanId,
+kl.LoanNum,
 a.IncomeOfBorrowersSpouseUsedIndicator,
 a.RentAmount,
 a.FirstMortgagePrincipalAndInterestAmount,  
@@ -87,12 +88,13 @@ a.ModifiedUtc,
 a.ApplicationId,
 b.BorrowerId
 
---INTO dbo.Application
+INTO dbo.Application
 FROM dbo.Loan kl
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.Loannumber = kl.LoanNum
-LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b ON b.encompassid = l.encompassid AND b.fullname is not null
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.Loanguid
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b ON b.encompassid = l.encompassid AND b.fullname is not null
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Application a ON a.applicationid = b.applicationid
 
+--DELETE FROM Application
 
 --DROP TABLE dbo.Application
 

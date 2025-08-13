@@ -16,6 +16,7 @@ CREATE TABLE dbo.Borrower (
     ModifiedUtc BIGINT NULL
 );
 
+--DROP TABLE Borrower
 
 --ALTER TABLE dbo.Borrower
 --ADD ApplicantType VARCHAR(30);
@@ -48,7 +49,8 @@ INSERT INTO dbo.Borrower (
     mobilephone,
     maritalstatustype,
     borrowerid,
-    ModifiedUtc
+    ModifiedUtc,
+    ApplicantType
 )
 Select kl.loanid,
 a.applicationindex,
@@ -64,22 +66,22 @@ b.homephonenumber,
 b.mobilephone,
 b.maritalstatustype,
 b.borrowerid,
-b.ModifiedUtc
+b.ModifiedUtc,
+b.ApplicantType
 
 From [WIN-T0FCRL091AK].Encompass.elliedb.Loan l  
-LEFT JOIN Kratos.dbo.Loan kl ON kl.LoanNum = l.LoanNumber
+JOIN Kratos.dbo.Loan kl ON kl.Loanguid = l.encompassid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b ON l.encompassid = b.encompassid --and fullnamewithsuffix is not null 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Application a ON a.applicationid = b.applicationid 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Residence r ON r.applicationid = a.applicationid and b.applicanttype = r.applicanttype and urla2020streetaddress is not null and mailingaddressindicator = 1 
 Where fullnamewithsuffix is not null
 
 
-
 -- DBCC CHECKIDENT ('dbo.borrower', RESEED, 9999); 
 
--- DELETE FROM dbo.Borrower
+DELETE FROM dbo.Borrower
 
-UPDATE b_new
+/*UPDATE b_new
 SET b_new.ApplicantType = b_orig.ApplicantType
 FROM dbo.Borrower b_new
 JOIN Kratos.dbo.Loan kl ON b_new.loanid = kl.loanid
@@ -92,10 +94,10 @@ JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Residence r
     AND urla2020streetaddress IS NOT NULL 
     AND mailingaddressindicator = 1
 WHERE b_orig.fullnamewithsuffix IS NOT NULL
-  AND b_new.fullnamewithsuffix = b_orig.fullnamewithsuffix;
+  AND b_new.fullnamewithsuffix = b_orig.fullnamewithsuffix;*/ 
 
-SELECT * FROM Application a 
-LEFT JOIN Income i ON i.applicationid = a.applicationid
-Where i.LoanId = '1028736'
+
+
+SELECT TOP 10 * FROM Borrower
 
 

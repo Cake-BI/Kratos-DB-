@@ -76,7 +76,7 @@ INSERT INTO dbo.Employment (
     EmployerID 
 )
 
-SELECT kb.borrowerid,
+SELECT b.borrowerid,
 e.employername,
 e.addressstreetline1,
 e.addresscity,
@@ -109,7 +109,7 @@ e.employmentid
 
 --SELECT kl.loannum, kb.borrowerid, *
 From Kratos.dbo.Loan kl 
-LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.loanguid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b ON l.encompassid = b.encompassid --and fullnamewithsuffix is not null 
 LEFT JOIN Kratos.dbo.Borrower kb ON kb.borrowerid = b.borrowerid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Residence r ON r.applicationid = b.applicationid and b.applicanttype = r.applicanttype and urla2020streetaddress is not null and mailingaddressindicator = 1 
@@ -127,7 +127,7 @@ WHERE l.loannumber = '2501042333'*/
 -- SELECT TOP 10 * FROM dbo.Employment 
 
 
-
+SELECT * FROM Employment
 
 
  

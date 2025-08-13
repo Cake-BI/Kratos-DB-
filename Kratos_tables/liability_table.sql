@@ -2,8 +2,8 @@ SELECT kl.LoanId, li.*
 
 INTO dbo.Liability
 FROM dbo.Loan kl 
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum 
-LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Liability li ON li.encompassid = l.encompassid 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.loanguid 
+LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Liability li ON li.encompassid = l.encompassid
 
 --DROP TABLE Liability 
 
@@ -22,13 +22,3 @@ LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Liability li ON li.encompassid = l
 --REFERENCES dbo.Loan(LoanID)
 --ON DELETE CASCADE;
 
-SELECT * FROM FeeItemization
-WHERE loanID = '1028736'
-
-
-SELECT * 
-
-FROM dbo.Loan kl 
-LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum 
-Left Join [WIN-T0FCRL091AK].Encompass.elliedb.Residence r ON r.encompassid = l.encompassid
-WHERE loannumber = '2105017951'

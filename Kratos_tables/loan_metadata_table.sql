@@ -10,6 +10,8 @@ CREATE TABLE dbo.LoanMetaData (
     REFERENCES dbo.Loan(LoanId)
 );
 
+--DELETE FROM LoanMetaData
+
 --DROP TABLE LoanMetaData
 
 --ALTER TABLE dbo.LoanMetaData
@@ -39,7 +41,7 @@ l.Channel,
 l.modifiedUtc
 
 FROM dbo.loan kl
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.loanguid
 
 
 

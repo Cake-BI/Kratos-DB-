@@ -54,6 +54,8 @@ CREATE TABLE BorrowerCredit (
     REFERENCES dbo.Borrower(BorrowerId)
 ); 
 
+DELETE FROM BorrowerCredit
+
 --DROP TABLE BorrowerCredit
 
 --ALTER TABLE dbo.BorrowerCredit
@@ -170,12 +172,11 @@ b.EquifaxFactorCode5,
 b.borrowerid,
 b.modifiedutc
 
-SELECT  * 
 FROM dbo.Loan kl 
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum
-LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b ON b.encompassid = l.encompassid AND b.applicanttype IN ('borrower', 'coborrower') AND b.fullname is not null
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.loanguid
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b ON b.encompassid = l.encompassid AND b.applicanttype IN ('borrower', 'coborrower') AND b.fullname is not null
 --LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b1 ON b1.encompassid = l.encompassid AND b1.applicanttype = 'coborrower' AND b1.fullname is not null
-WHERE b.borrowerid is null
+
 
 
 
@@ -193,4 +194,4 @@ WHERE loanid IN (
     1029515
 );*/
 
-
+SELECT * FROM BorrowerCredit

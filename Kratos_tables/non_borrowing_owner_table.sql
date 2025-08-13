@@ -3,8 +3,10 @@ nbo.*
 
 --INTO dbo.NonBorrowingOwner
 FROM Loan kl
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loannum = l.Loannumber 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loanguid = l.encompassid 
 JOIN [WIN-T0FCRL091AK].Encompass.elliedb.NonBorrowingOwner nbo ON nbo.encompassid = l.encompassid
+
+
 
 --DROP TABLE dbo.NonBorrowingOwner
 
@@ -22,8 +24,6 @@ JOIN [WIN-T0FCRL091AK].Encompass.elliedb.NonBorrowingOwner nbo ON nbo.encompassi
 --FOREIGN KEY (LoanID)
 --REFERENCES dbo.Loan(LoanID)
 --ON DELETE CASCADE;
-
-
 
 --ALTER TABLE NonBorrowingOwner 
 --DROP COLUMN encompassId, dcmodifiedutc, createdutc, entitydeleted, Id

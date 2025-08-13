@@ -41,9 +41,9 @@ SELECT
     r.ApplicationId, 
     b.BorrowerId
 
---INTO dbo.Residence    
+INTO dbo.Residence    
 FROM dbo.Loan kl 
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.LoanNumber = kl.LoanNum 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.Loanguid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Residence r ON r.EncompassId = l.EncompassId AND r.ResidencyType = 'Current'
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Borrower b ON b.ApplicationId = r.ApplicationId AND b.ApplicantType = r.ApplicantType
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Residence m ON m.ApplicationId = r.ApplicationId AND m.ApplicantType = r.ApplicantType AND m.MailingAddressIndicator = 1
@@ -73,5 +73,7 @@ WHERE mailingpostalcode != currentpostalcode
 SELECT Column_name 
 FROM [WIN-T0FCRL091AK].Encompass.INFORMATION_SCHEMA.COLUMNS 
 WHERE TABLE_NAME = 'Residence'
+
+SELECT * FROM LoanProperty
 
 

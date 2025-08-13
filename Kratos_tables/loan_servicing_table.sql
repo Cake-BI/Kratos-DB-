@@ -18,6 +18,8 @@ CREATE TABLE dbo.LoanServicing (
     REFERENCES dbo.Loan(LoanId)
 );
 
+--DELETE FROM LoanServicing 
+
 -- DROP TABLE LoanServicing
 
 --ALTER TABLE dbo.LoanServicing 
@@ -62,9 +64,8 @@ lpd.LoanProductDataID,
 lpd.ModifiedUtc
 
 FROM dbo.loan kl
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.loanguid 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.RateLock rl ON rl.encompassid = l.encompassid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.LoanProductData lpd ON lpd.encompassid = rl.encompassid
 
-
-
+SELECT * FROM LoanServicing

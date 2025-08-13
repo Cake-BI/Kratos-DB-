@@ -181,10 +181,12 @@ va.ModifiedUtc,
 va.VaLoanDataId
 
 
-INTO dbo.LoanVaData
+--INTO dbo.LoanVaData
 FROM Loan kl 
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loannum = l.Loannumber 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loanguid = l.encompassid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.VALoanData va ON va.encompassid = l.encompassid 
+
+
 
 --DROP TABLE dbo.LoanVaData
 
@@ -197,10 +199,10 @@ LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.VALoanData va ON va.encompassid = 
 --ALTER TABLE dbo.LoanVaData
 --DROP CONSTRAINT [FK_LoanVaData(LoanID)_Loan(LoanID)];
 
---ALTER TABLE dbo.LoanVaData
---ADD CONSTRAINT [FK_LoanVaData(LoanID)_Loan(LoanID)]
---FOREIGN KEY (LoanID)
---REFERENCES dbo.Loan(LoanID)
---ON DELETE CASCADE;
+ALTER TABLE dbo.LoanVaData
+ADD CONSTRAINT [FK_LoanVaData(LoanID)_Loan(LoanID)]
+FOREIGN KEY (LoanID)
+REFERENCES dbo.Loan(LoanID)
+ON DELETE CASCADE;
 
 SELECT * FROM VALoanData

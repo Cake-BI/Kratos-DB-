@@ -36,12 +36,14 @@ a.AssetId,
 a.ApplicationId,
 a.EncompassId
 
---INTO dbo.Asset 
+INTO dbo.Asset 
 FROM Loan kl 
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loannum = l.Loannumber 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loanguid = l.encompassid 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Asset a ON a.encompassid = l.encompassid 
 
 --DROP TABLE dbo.Asset
+
+--SELECT * FROM Asset 
 
 --ALTER TABLE dbo.Asset
 --ALTER COLUMN AssetId NVARCHAR(100) NOT NULL;

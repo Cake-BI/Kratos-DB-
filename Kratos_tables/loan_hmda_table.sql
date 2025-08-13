@@ -44,7 +44,7 @@ hmda.ModifiedUtc
 
 INTO dbo.LoanHmda
 FROM dbo.Loan kl
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.Loannumber = kl.LoanNum
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.Loanguid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.HMDA hmda ON hmda.encompassid = l.encompassid
 
 --DROP TABLE LoanHmda

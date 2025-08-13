@@ -1,3 +1,30 @@
+INSERT INTO dbo.Contact (
+    LoanId,
+    ContactType,
+    ContactIndex,
+    ReferenceNumber,
+    Name,
+    ContactName,
+    ContactTitle,
+    Address,
+    City,
+    State,
+    PostalCode,
+    Phone,
+    Phone2,
+    Email,
+    Fax,
+    Fax2,
+    PersonalLicenseNumber,
+    LicenseType,
+    LicenseExempt,
+    NmlsLicense,
+    License,
+    ContactId,
+    ModifiedUtc
+)
+
+
 SELECT kl.LoanId,
 c.ContactType,
 c.ContactIndex,
@@ -22,10 +49,11 @@ c.License,
 c.ContactId,
 c.ModifiedUtc
 
-INTO dbo.Contact 
 FROM Loan kl 
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.LoanNumber = kl.LoanNum 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.loanguid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Contact c ON c.encompassid = l.encompassid
+
+--DELETE FROM Contact
 
 --DROP TABLE dbo.Contact 
 
@@ -44,3 +72,5 @@ LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Contact c ON c.encompassid = l.enc
 --REFERENCES dbo.Loan(LoanID)
 --ON DELETE CASCADE;
 
+
+SELECT * FROM 

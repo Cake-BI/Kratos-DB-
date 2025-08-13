@@ -3,7 +3,7 @@ reo.*
 
 --INTO dbo.ReoProperty 
 FROM Loan kl 
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loannum = l.Loannumber 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loanguid = l.encompassid
 JOIN [WIN-T0FCRL091AK].Encompass.elliedb.ReoProperty reo ON reo.encompassid = l.encompassid AND reo.StreetAddress is not null
 
 --DROP TABLE dbo.ReoProperty

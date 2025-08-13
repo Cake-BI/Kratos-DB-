@@ -13,7 +13,7 @@ FUND.ModifiedUtc
 
 INTO dbo.LoanFunding 
 FROM dbo.Loan kl
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.Loannumber = kl.LoanNum
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.Loanguid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Funding fund ON fund.encompassid = l.encompassid
 WHERE fund.fundingid is not null
 

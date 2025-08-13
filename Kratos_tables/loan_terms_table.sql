@@ -38,6 +38,8 @@ CREATE TABLE dbo.LoanTerms (
     REFERENCES dbo.Loan(LoanId)
 );
 
+--DELETE FROM LoanTerms 
+
 --DROP TABLE LoanTerms
 
 --ALTER TABLE dbo.LoanTerms
@@ -123,7 +125,7 @@ lpd.LoanProductDataID,
 lpd.ModifiedUtc
 
 FROM dbo.loan kl
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.loannumber = kl.loannum 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON l.encompassid = kl.loanguid 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.LoanProductData lpd ON lpd.encompassid = l.encompassid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.CustomField cf ON cf.encompassid = lpd.encompassid AND cf.fieldname = 'CX.INCOMEVERIFYTYPE'
 

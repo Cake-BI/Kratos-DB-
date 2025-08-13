@@ -1,11 +1,12 @@
 SELECT kl.LoanId,
 gfe.*
 
---INTO dbo.FeeItemization 
+INTO dbo.FeeItemization 
 FROM Loan kl
-JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loannum = l.Loannumber 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.Loanguid = l.encompassid 
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Gfe2010Fee gfe ON gfe.encompassid = l.encompassid
 
+DELETE FROM FeeItemization
 
 --ALTER TABLE FeeItemization 
 --DROP COLUMN Gfe2010Id, EncompassId, CreatedUtc, DcModifiedUtc;
