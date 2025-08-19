@@ -30,15 +30,23 @@ MaventEnterpriseResult,
 MaventGseResult,
 MaventHighCostResult,
 MaventHmdaResult,
-MaventLicenseResult,
+m.MaventLicenseResult,
 m.MiscellaneousId AS LoanMaventId,
 m.ModifiedUtc
 
---INTO dbo.LoanMavent 
+INTO dbo.LoanMavent 
 FROM Loan kl 
 JOIN [WIN-T0FCRL091AK].Encompass.elliedb.Loan l ON kl.loanguid = l.encompassid
 LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.miscellaneous m ON m.encompassid = l.encompassid
 --WHERE LoanNumber = '7508048152'
+
+--SELECT * FROM LoanMavent
+
+SELECT ModifiedUtc FROM [WIN-T0FCRL091AK].Encompass.elliedb.Loan
+WHERE LoanNumber = '2508048412'
+
+SELECT ModifiedUtc FROM Loan
+WHERE LoanNum = '2508048412'
 
 --DROP TABLE dbo.LoanMavent
 
@@ -58,7 +66,7 @@ LEFT JOIN [WIN-T0FCRL091AK].Encompass.elliedb.miscellaneous m ON m.encompassid =
 --ON DELETE CASCADE;
 
 
-SELECT lw.LoanId, Count(*)
+SELECT lw.Mavent, Count(*)
 FROM Residence lw
 LEFT JOIN Loan l ON l.loanid = lw.loanid
 Group by lw.LoanID 

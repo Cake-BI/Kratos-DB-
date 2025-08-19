@@ -5,7 +5,7 @@ kl.InvestorLoanNumber,
 kl.LoanGuId,
 lmd.LoanMetaDataId AS LoanAdverseId
 
---INTO dbo.LoanAdverse
+INTO dbo.LoanAdverse
 FROM Loan kl 
 JOIN [WIN-T0FCRL091AK].Encompass.elliedb.LoanMetaData lmd ON lmd.encompassid = kl.loanguid AND lmd.LoanFolder = 'Adverse Loans'
 
@@ -26,4 +26,16 @@ JOIN [WIN-T0FCRL091AK].Encompass.elliedb.LoanMetaData lmd ON lmd.encompassid = k
 --REFERENCES dbo.Loan(LoanID)
 --ON DELETE CASCADE;
 
+
+---COMPARE---
 SELECT * FROM LoanAdverse
+
+
+SELECT l.LoanNumber, 
+       l.EncompassId,
+       l.ModifiedUtc 
+FROM [WIN-T0FCRL091AK].Encompass.elliedb.Loan l 
+JOIN [WIN-T0FCRL091AK].Encompass.elliedb.LoanMetaData lmd ON lmd.encompassid = l.encompassid 
+WHERE lmd.LoanFolder IN (
+    'Adverse Loans'
+)
